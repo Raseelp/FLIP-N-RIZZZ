@@ -81,10 +81,8 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        // _game.showPauseDialog(
-                        //     context, stopTimer, startOrContinueTimer);
-                        _game.showVictoryDiolog(
-                            tries, scores, stopTimer, context, '08:20');
+                        _game.showPauseDialog(
+                            context, stopTimer, startOrContinueTimer);
                       },
                       icon: Icon(
                         Icons.pause_circle_filled_outlined,

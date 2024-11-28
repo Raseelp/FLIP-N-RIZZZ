@@ -13,71 +13,94 @@ class Multithemeselection extends StatelessWidget {
       backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Select a theme',
-              style: TextStyle(
-                  color: AppColors.primaryText,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: screenHeight * .4,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              MultiDifficulty(themeIndex: 0)));
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.116,
-                      vertical: screenHeight * 0.02),
-                  child: const Text('FOOTBALL',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                )),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MultiDifficulty(themeIndex: 1)));
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.13,
-                    vertical: screenHeight * 0.018),
-                child: const Text('Siuuuuuuuuuuu',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: screenHeight * 0.07,
               ),
-            )
-          ],
+              const Text(
+                'Vibe Select',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: screenHeight * 0.07,
+              ),
+              const Text(
+                textAlign: TextAlign.center,
+                ' You think you can escape this meme world? Pick a theme or it picks YOU.',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+              ),
+              SizedBox(
+                height: screenHeight * 0.04,
+              ),
+              Stack(
+                children: [
+                  Image.asset('assets/images/theme.png'),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MultiDifficulty(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.21,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MultiDifficulty(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.20,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MultiDifficulty(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.20,
+                          color: Colors.transparent,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
