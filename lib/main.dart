@@ -13,11 +13,8 @@ class FlipNRizz extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: const TextTheme(
-          bodyMedium: TextStyle(
-            fontFamily: 'myfont',
-          ),
+          bodyMedium: TextStyle(fontFamily: 'bangers', letterSpacing: 2),
         ),
-        // Apply the same font to all other default text styles if needed.
       ),
       home: Homepage(),
     );

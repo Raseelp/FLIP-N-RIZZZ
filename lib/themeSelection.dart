@@ -13,76 +13,63 @@ class ThemeSelection extends StatelessWidget {
       backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Select a theme',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: screenHeight * .4,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DifficultySelection(
-                          themeIndex: 0,
-                        ),
-                      ));
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.116,
-                      vertical: screenHeight * 0.02),
-                  child: const Text('FOOTBALL',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: screenHeight * 0.07,
+              ),
+              const Text(
+                'Level of Ohio-ness',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              Stack(
+                children: [
+                  Image.asset('assets/images/ohio.png'),
+                  Positioned(
+                    top: screenHeight * 0.07,
+                    left: screenWidth * 0.05,
+                    child: const Text(
+                      'WAIT,ITS ALL OHIO?',
                       style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                )),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DifficultySelection(
-                        themeIndex: 1,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Positioned(
+                    top: screenHeight * 0.005,
+                    right: screenWidth * 0.15,
+                    child: Container(
+                      color: Colors.transparent,
+                      height: screenHeight * 0.2,
+                      width: screenWidth * 0.2,
+                      child: const Text(
+                        'Pick your vibe.',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
                       ),
-                    ));
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.13,
-                    vertical: screenHeight * 0.018),
-                child: const Text('Gollllllllllllaaasoooo',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
+              SizedBox(
+                height: screenHeight * 0.04,
+              ),
+              Stack(
+                children: [
+                  Image.asset('assets/images/threeop.png'),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
