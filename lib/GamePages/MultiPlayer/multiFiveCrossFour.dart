@@ -55,7 +55,7 @@ class _MultiFivecrossFour extends State<MultiFivecrossFour> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        showPauseDialog();
+                        _game.showMultiPauseDialog(context);
                       },
                       icon: Icon(
                         Icons.pause_circle_filled_outlined,
@@ -175,111 +175,6 @@ class _MultiFivecrossFour extends State<MultiFivecrossFour> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
         ),
       ),
-    );
-  }
-
-  void showPauseDialog() {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: AppColors.pastelYellow,
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.width * 0.5,
-            child: Column(
-              children: [
-                const Text(
-                  'Paused',
-                  style: TextStyle(color: AppColors.primaryText, fontSize: 35),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.05,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.primaryAccent),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MultiFivecrossFour(
-                                  themeIndex: widget.themeIndex,
-                                ),
-                              ));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.restart_alt_rounded,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.pause_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Homepage(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.home_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
