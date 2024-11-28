@@ -71,7 +71,7 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
               width: screenWidth * 0.9,
               height: screenHeight * 0.17,
               decoration: const BoxDecoration(
-                color: AppColors.secondaryAccent,
+                color: Colors.white,
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(20),
                 ),
@@ -81,8 +81,10 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        _game.showPauseDialog(
-                            context, stopTimer, startOrContinueTimer);
+                        // _game.showPauseDialog(
+                        //     context, stopTimer, startOrContinueTimer);
+                        _game.showVictoryDiolog(
+                            tries, scores, stopTimer, context, '08:20');
                       },
                       icon: Icon(
                         Icons.pause_circle_filled_outlined,

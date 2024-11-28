@@ -69,156 +69,255 @@ class Game {
           onWillPop: () async {
             return false;
           },
-          child: AlertDialog(
-            backgroundColor: AppColors.pastelYellow,
-            content: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.width * 1.2,
-              child: Column(
-                children: [
-                  const Text(
-                    'WELL DONE!',
-                    style:
-                        TextStyle(color: AppColors.primaryText, fontSize: 35),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    height: MediaQuery.of(context).size.width * 0.25,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.lightCyan,
-                        border: Border.all()),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Moves: $moves',
-                          style: const TextStyle(
-                              fontSize: 25, color: AppColors.primaryText),
-                        ),
-                        Text(
-                          'Time:  $time',
-                          style: const TextStyle(
-                              fontSize: 25, color: AppColors.primaryText),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.secondaryAccent,
+          child: Stack(children: [
+            AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              backgroundColor: Colors.white,
+              content: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.width * 1.5,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * .15,
                       ),
-                      child: Column(
+                      const Text(
+                        textAlign: TextAlign.center,
+                        'Big W energy\, no cap!',
+                        style: TextStyle(
+                            color: AppColors.primaryText, fontSize: 35),
+                      ),
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(),
-                                color: AppColors.lightCyan,
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.30,
+                                height: MediaQuery.of(context).size.width * 0.3,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/ghost.png',
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.7,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    Positioned(
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            const Text(
+                                              'Brainflips:',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24),
+                                            ),
+                                            Text(
+                                              ' $moves',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              width: double.infinity,
-                              child: const Center(
-                                  child: Text(
-                                'Totel:',
-                                style: TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primaryText),
-                              )),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.30,
+                                height: MediaQuery.of(context).size.width * 0.3,
+                                decoration: BoxDecoration(
                                   border: Border.all(),
-                                  color: AppColors.primaryAccent,
-                                  borderRadius: const BorderRadius.vertical(
-                                      bottom: Radius.circular(20))),
-                              width: double.infinity,
-                              child: Center(
-                                  child: Text(
-                                '$scores',
-                                style: const TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              )),
-                            ),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/bum.png',
+                                    ),
+                                    Positioned(
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            const Text(
+                                              'ticktock:',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24),
+                                            ),
+                                            Text(
+                                              ' $time',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.width * 0.3,
-                    decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.primaryAccent),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ThemeSelection()));
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            height: MediaQuery.of(context).size.width * 0.15,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              color: AppColors.lightCyan,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Icon(
-                              Icons.restart_alt_rounded,
-                              size: 40,
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.width * 0.4,
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(0),
+                            color: Colors.white,
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Homepage(),
+                          child: Stack(children: [
+                            Image.asset(
+                              'assets/images/aura.png',
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              fit: BoxFit.fill,
+                            ),
+                            Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Aurapoints',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30),
+                                  ),
+                                  Text(
+                                    '+ $scores',
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            height: MediaQuery.of(context).size.width * 0.15,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              color: AppColors.lightCyan,
-                              borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Icon(
-                              Icons.home_outlined,
-                              size: 40,
+                          ]),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(0),
+                            color: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ThemeSelection()));
+                              },
+                              child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.30,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.25,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  child: Stack(children: [
+                                    Image.asset(
+                                      'assets/images/sa.png',
+                                      fit: BoxFit.fill,
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.25,
+                                    ),
+                                    const Positioned(
+                                      child: Center(
+                                        child: Text(
+                                          'Restart',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                    )
+                                  ])),
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Homepage(),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.30,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.25,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  child: Stack(children: [
+                                    Image.asset(
+                                      'assets/images/untiledited.png',
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.25,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    const Positioned(
+                                      child: Center(
+                                        child: Text(
+                                          'Dip NOW',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                    )
+                                  ])),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
+            Positioned(
+                top: MediaQuery.of(context).size.width * -0.03,
+                left: MediaQuery.of(context).size.width * 0.25,
+                child: Image.asset(
+                  'assets/images/donbg.png',
+                  width: MediaQuery.of(context).size.width * 0.5,
+                ))
+          ]),
         );
       },
     );
@@ -276,7 +375,7 @@ class Game {
                             Text(
                               '$bluescores',
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 70,
                                   fontWeight: FontWeight.bold),
                             )
