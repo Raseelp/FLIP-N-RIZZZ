@@ -1,7 +1,15 @@
+import 'package:flipnrizz/GamePages/threeCrossTwo.dart';
+import 'package:flipnrizz/MultiThemeSelection.dart';
+import 'package:flipnrizz/homePage.dart';
+import 'package:flipnrizz/themeSelection.dart';
+import 'package:flipnrizz/util/appColors.dart';
+import 'package:flutter/material.dart';
+
 class Game {
   final String hiddenCardPath = 'assets/images/hidden.png';
   final int cardCount;
   final int themeIndex;
+  int _secondsElapsed = 0;
   List<String>? gameImg;
   final List<List<String>> themes = [
     [
@@ -48,6 +56,337 @@ class Game {
     gameImg = List.generate(
       cardCount,
       (index) => hiddenCardPath,
+    );
+  }
+
+  void showVictoryDiolog(int moves, int scores, Function stopTimer,
+      BuildContext context, String time) {
+    stopTimer();
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return false;
+          },
+          child: AlertDialog(
+            backgroundColor: AppColors.pastelYellow,
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.width * 1.2,
+              child: Column(
+                children: [
+                  const Text(
+                    'WELL DONE!',
+                    style:
+                        TextStyle(color: AppColors.primaryText, fontSize: 35),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: MediaQuery.of(context).size.width * 0.25,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.lightCyan,
+                        border: Border.all()),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Moves: $moves',
+                          style: const TextStyle(
+                              fontSize: 25, color: AppColors.primaryText),
+                        ),
+                        Text(
+                          'Time:  $time',
+                          style: const TextStyle(
+                              fontSize: 25, color: AppColors.primaryText),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      height: MediaQuery.of(context).size.width * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.secondaryAccent,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                color: AppColors.lightCyan,
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              width: double.infinity,
+                              child: const Center(
+                                  child: Text(
+                                'Totel:',
+                                style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryText),
+                              )),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.primaryAccent,
+                                  borderRadius: const BorderRadius.vertical(
+                                      bottom: Radius.circular(20))),
+                              width: double.infinity,
+                              child: Center(
+                                  child: Text(
+                                '$scores',
+                                style: const TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.width * 0.3,
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.primaryAccent),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ThemeSelection()));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            height: MediaQuery.of(context).size.width * 0.15,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: AppColors.lightCyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Icon(
+                              Icons.restart_alt_rounded,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Homepage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            height: MediaQuery.of(context).size.width * 0.15,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: AppColors.lightCyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Icon(
+                              Icons.home_outlined,
+                              size: 40,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void showMultiVictoryDiolog(
+      int bluescores, int redScores, String Winner, BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return false;
+          },
+          child: AlertDialog(
+            backgroundColor: AppColors.pastelYellow,
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Column(
+                children: [
+                  Text(
+                    '$Winner WINS!',
+                    style:
+                        TextStyle(color: AppColors.primaryText, fontSize: 35),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                        ),
+                        width: 100,
+                        height: 150,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              color: AppColors.cardBack,
+                              child: Center(
+                                child: Text(
+                                  'Blue',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '$bluescores',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 70,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.red,
+                        ),
+                        width: 100,
+                        height: 150,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              color: AppColors.primaryAccent,
+                              child: const Center(
+                                child: Text(
+                                  'Red',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '$redScores',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 70,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.width * 0.3,
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.primaryAccent),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Multithemeselection()));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            height: MediaQuery.of(context).size.width * 0.15,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: AppColors.lightCyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Icon(
+                              Icons.restart_alt_rounded,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Homepage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            height: MediaQuery.of(context).size.width * 0.15,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: AppColors.lightCyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Icon(
+                              Icons.home_outlined,
+                              size: 40,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

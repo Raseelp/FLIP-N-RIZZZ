@@ -19,7 +19,7 @@ class Homepage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Flip N Pair',
+              'Flip N Rizzz',
               style: TextStyle(
                   color: AppColors.primaryText,
                   fontSize: 40,
@@ -80,22 +80,6 @@ class Homepage extends StatelessWidget {
             SizedBox(
               height: screenHeight * .03,
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.13,
-                      vertical: screenHeight * 0.018),
-                  child: const Text('Settings',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                ))
           ],
         ),
       ),
