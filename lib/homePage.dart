@@ -68,6 +68,28 @@ class Homepage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: screenHeight * 0.01,
+                    right: screenWidth * 0.14,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Multithemeselection(),
+                          ),
+                        );
+                      },
+                      child: Transform.rotate(
+                        angle: -0.3,
+                        child: Container(
+                          height: screenHeight * 0.18,
+                          width: screenWidth * 0.35,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(

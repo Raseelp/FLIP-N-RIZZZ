@@ -263,7 +263,7 @@ class Game {
                             Container(
                               width: double.infinity,
                               color: AppColors.cardBack,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   'Blue',
                                   style: TextStyle(
@@ -275,7 +275,7 @@ class Game {
                             ),
                             Text(
                               '$bluescores',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 70,
                                   fontWeight: FontWeight.bold),
@@ -397,14 +397,17 @@ class Game {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: AppColors.pastelYellow,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+              side: BorderSide(width: 2)),
+          backgroundColor: Colors.white,
           content: SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.width * 0.5,
+            height: MediaQuery.of(context).size.width * 1.1,
             child: Column(
               children: [
                 const Text(
-                  'Paused',
+                  'Hold Up',
                   style: TextStyle(color: AppColors.primaryText, fontSize: 35),
                 ),
                 SizedBox(
@@ -412,77 +415,109 @@ class Game {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
                       border: Border.all(),
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.primaryAccent),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      borderRadius: BorderRadius.circular(0),
+                      color: Colors.white),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ThemeSelection()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.restart_alt_rounded,
-                            size: 40,
-                          ),
-                        ),
-                      ),
                       GestureDetector(
                         onTap: () {
                           startOrContinueTimer();
                           Navigator.pop(context);
                         },
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.pause_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Homepage(),
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            height: MediaQuery.of(context).size.width * 0.5,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(0),
                             ),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
+                            child: Stack(children: [
+                              Image.asset('assets/images/bum.png'),
+                              const Positioned(
+                                child: Center(
+                                  child: Text(
+                                    'Continue',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  ),
+                                ),
+                              )
+                            ])),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.09,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ThemeSelection()));
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.19,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(children: [
+                                  Image.asset(
+                                    'assets/images/sa.png',
+                                  ),
+                                  const Positioned(
+                                    child: Center(
+                                      child: Text(
+                                        'Restart',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ),
+                                  )
+                                ])),
                           ),
-                          child: const Icon(
-                            Icons.home_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      )
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Homepage(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.19,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(children: [
+                                  Image.asset(
+                                    'assets/images/untiledited.png',
+                                  ),
+                                  const Positioned(
+                                    child: Center(
+                                      child: Text(
+                                        'Dip NOW',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ),
+                                  )
+                                ])),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 )
@@ -500,14 +535,17 @@ class Game {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: AppColors.pastelYellow,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+              side: BorderSide(width: 2)),
+          backgroundColor: Colors.white,
           content: SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.width * 0.5,
+            height: MediaQuery.of(context).size.width * 1.1,
             child: Column(
               children: [
                 const Text(
-                  'Paused',
+                  'HOLD UP',
                   style: TextStyle(color: AppColors.primaryText, fontSize: 35),
                 ),
                 SizedBox(
@@ -515,76 +553,109 @@ class Game {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.primaryAccent),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Multithemeselection()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.restart_alt_rounded,
-                            size: 40,
-                          ),
-                        ),
-                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Icon(
-                            Icons.pause_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Homepage(),
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            height: MediaQuery.of(context).size.width * 0.5,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(0),
                             ),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.lightCyan,
-                            borderRadius: BorderRadius.circular(20),
+                            child: Stack(children: [
+                              Image.asset('assets/images/bum.png'),
+                              const Positioned(
+                                child: Center(
+                                  child: Text(
+                                    'Continue',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  ),
+                                ),
+                              )
+                            ])),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.09,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Multithemeselection(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.19,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(children: [
+                                  Image.asset(
+                                    'assets/images/sa.png',
+                                  ),
+                                  const Positioned(
+                                    child: Center(
+                                      child: Text(
+                                        'Restart',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ),
+                                  )
+                                ])),
                           ),
-                          child: const Icon(
-                            Icons.home_outlined,
-                            size: 40,
-                          ),
-                        ),
-                      )
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Homepage(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.19,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Stack(children: [
+                                  Image.asset(
+                                    'assets/images/untiledited.png',
+                                  ),
+                                  const Positioned(
+                                    child: Center(
+                                      child: Text(
+                                        'Dip NOW',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ),
+                                  )
+                                ])),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 )
