@@ -22,52 +22,83 @@ class ThemeSelection extends StatelessWidget {
                 height: screenHeight * 0.07,
               ),
               const Text(
-                'Level of Ohio-ness',
+                'Vibe Select',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 40,
                     fontWeight: FontWeight.bold),
               ),
-              Stack(
-                children: [
-                  Image.asset('assets/images/ohio.png'),
-                  Positioned(
-                    top: screenHeight * 0.07,
-                    left: screenWidth * 0.05,
-                    child: const Text(
-                      'WAIT,ITS ALL OHIO?',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Positioned(
-                    top: screenHeight * 0.005,
-                    right: screenWidth * 0.15,
-                    child: Container(
-                      color: Colors.transparent,
-                      height: screenHeight * 0.2,
-                      width: screenWidth * 0.2,
-                      child: const Text(
-                        'Pick your vibe.',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
-                ],
+              SizedBox(
+                height: screenHeight * 0.07,
+              ),
+              const Text(
+                textAlign: TextAlign.center,
+                ' You think you can escape this meme world? Pick a theme or it picks YOU.',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
               ),
               SizedBox(
                 height: screenHeight * 0.04,
               ),
               Stack(
                 children: [
-                  Image.asset('assets/images/threeop.png'),
+                  Image.asset('assets/images/theme.png'),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DifficultySelection(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.21,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DifficultySelection(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.20,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DifficultySelection(themeIndex: 0),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.20,
+                          color: Colors.transparent,
+                        ),
+                      )
+                    ],
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
