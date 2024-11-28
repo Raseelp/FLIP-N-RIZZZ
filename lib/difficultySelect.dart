@@ -24,18 +24,84 @@ class _DifficultySelectionState extends State<DifficultySelection> {
       backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Select Difficulty',
-              style: TextStyle(
-                  color: AppColors.primaryText,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: screenHeight * 0.07,
+              ),
+              const Text(
+                'Level of Ohio-ness',
+                style: TextStyle(
+                    color: AppColors.primaryText,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              Image.asset('assets/images/ohio.png'),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              Stack(children: [
+                Image.asset('assets/images/threeopt.png'),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ThreeCrossTwo(themeIndex: widget.themeIndex)),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: screenHeight * 0.175,
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FourCrossThree(themeIndex: widget.themeIndex),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: screenHeight * 0.16,
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FiveCrossFour(themeIndex: widget.themeIndex),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: screenHeight * 0.175,
+                        color: Colors.transparent,
+                      ),
+                    )
+                  ],
+                )
+              ])
+            ],
+          ),
         ),
       ),
     );
