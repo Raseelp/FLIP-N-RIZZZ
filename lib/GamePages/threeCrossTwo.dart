@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flipnrizz/homePage.dart';
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
 import 'package:flutter/material.dart';
