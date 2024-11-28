@@ -14,73 +14,110 @@ class Homepage extends StatelessWidget {
       backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Flip N Rizzz',
-              style: TextStyle(
-                  color: AppColors.primaryText,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: screenHeight * .4,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ThemeSelection(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: screenHeight * 0.07,
+              ),
+              const Text(
+                'Flip N Rizzz',
+                style: TextStyle(
+                    color: AppColors.primaryText,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: screenHeight * 0.01,
+              ),
+              Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/twoop.png',
+                    width: screenWidth * 1,
+                  ),
+                  Positioned(
+                    top: screenHeight * 0.05,
+                    left: screenWidth * 0.13,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThemeSelection(),
+                          ),
+                        );
+                      },
+                      child: Transform.rotate(
+                        angle: -0.3,
+                        child: Container(
+                          height: screenHeight * 0.2,
+                          width: screenWidth * 0.32,
+                          color: Colors.transparent,
+                          child: const Text(
+                            'Solo Skibidi',
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.0899,
-                      vertical: screenHeight * 0.02),
-                  child: const Text('Quick Game',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                )),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Multithemeselection(),
+                  ),
+                  Positioned(
+                    top: screenHeight * 0.03,
+                    right: screenWidth * 0.21,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Multithemeselection(),
+                          ),
+                        );
+                      },
+                      child: Transform.rotate(
+                        angle: -0.3,
+                        child: Container(
+                          height: screenHeight * 0.16,
+                          width: screenWidth * 0.28,
+                          color: Colors.transparent,
+                          child: const Text(
+                            'Rizz Duel',
+                            style: TextStyle(
+                                fontSize: 23, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.1,
-                      vertical: screenHeight * 0.02),
-                  child: const Text('MultiPlayer',
-                      style: TextStyle(
+                  ),
+                  Positioned(
+                      bottom: screenHeight * 0.25,
+                      right: screenWidth * 0.15,
+                      child: const Text(
+                        'YOU',
+                        style: TextStyle(
                           color: Colors.white,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                )),
-            SizedBox(
-              height: screenHeight * .03,
-            ),
-          ],
+                        ),
+                      ))
+                ],
+              ),
+              SizedBox(
+                height: screenHeight * 0.03,
+              ),
+              const Text(
+                textAlign: TextAlign.center,
+                'Fly solo or flex in a faceoff—choose now!',
+                style: TextStyle(
+                    color: AppColors.primaryBlue,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );

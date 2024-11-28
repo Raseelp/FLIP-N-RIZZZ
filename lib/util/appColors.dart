@@ -21,4 +21,15 @@ class AppColors {
   // Feedback Colors
   static const Color success = Color(0xFF4CAF50); // Green
   static const Color error = Color(0xFFE57373); // Soft Red
+
+  static const Color deepBlue = Color(0xFF003366); // Deep Blue
+  static const Color emeraldGreen = Color(0xFF50C878); // Emerald Green
+  static const Color crimsonRed = Color(0xFFDC143C); // Crimson Red
+  static const Color royalPurple = Color(0xFF663399); // Royal Purple
+  static const Color teal = Color(0xFF008080); // Teal
+  static const Color orange = Color(0xFFFFA500); // Orange
+  static const Color coral = Color(0xFFFF7F50); // Coral
+  static const Color slateBlue = Color(0xFF6A5ACD); // Slate Blue
+  static const Color turquoise = Color(0xFF40E0D0); // Turquoise
+  static const Color darkMagenta = Color(0xFF8B008B); // Dark Magenta
 }
