@@ -1,5 +1,5 @@
 import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
-import 'package:flipnrizz/MultiThemeSelection.dart';
+
 import 'package:flipnrizz/themeSelection.dart';
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flutter/material.dart';

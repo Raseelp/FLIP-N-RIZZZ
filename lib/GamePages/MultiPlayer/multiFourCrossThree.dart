@@ -122,7 +122,12 @@ class _Multifourcrossthree extends State<Multifourcrossthree> {
                                       Winner = widget.playerTwo;
                                     }
                                     _game.showMultiVictoryDiolog(
-                                        blueScore, redScore, Winner, context);
+                                        blueScore,
+                                        redScore,
+                                        Winner,
+                                        context,
+                                        widget.playerOne,
+                                        widget.playerTwo);
                                   }
                                   _game.matchCheck.clear();
                                 } else {
