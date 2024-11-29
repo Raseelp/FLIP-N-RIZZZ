@@ -1,5 +1,4 @@
-import 'package:flipnrizz/GamePages/loadingPage.dart';
-import 'package:flipnrizz/homePage.dart';
+import 'package:flipnrizz/loadingPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {

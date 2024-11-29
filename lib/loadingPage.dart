@@ -20,13 +20,13 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   void _startLoading() {
-    Timer.periodic(const Duration(milliseconds: 50), (timer) {
+    Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         if (_progressValue < 1.0) {
-          _progressValue += 0.02; // Increment progress
+          _progressValue += 0.02;
         } else {
-          timer.cancel(); // Stop the timer when the loading completes
-          _navigateToHome(); // Navigate to home screen
+          timer.cancel();
+          _navigateToHome();
         }
       });
     });
@@ -43,23 +43,26 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/until.png'),
-            const Text(
-              "Loading...",
-              style: TextStyle(fontSize: 24, color: Colors.white),
-            ),
-            const SizedBox(height: 20),
-            LinearProgressIndicator(
-              value: _progressValue,
-              backgroundColor: Colors.white,
-              color: Colors.blueAccent,
-              minHeight: 10,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/loading.png'),
+              const Text(
+                "Loading...",
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+              const SizedBox(height: 20),
+              LinearProgressIndicator(
+                value: _progressValue,
+                backgroundColor: Colors.white,
+                color: Colors.black,
+                minHeight: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );

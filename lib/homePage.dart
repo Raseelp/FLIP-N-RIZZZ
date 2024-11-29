@@ -23,12 +23,22 @@ class Homepage extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.07,
               ),
-              const Text(
-                'Flip N Rizzz',
-                style: TextStyle(
-                    color: AppColors.primaryText,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Flip N Rizzz',
+                    style: TextStyle(
+                        color: AppColors.primaryText,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Image.asset(
+                    'assets/images/question.png',
+                    width: screenHeight * 0.08,
+                    height: screenWidth * 0.09,
+                  ),
+                ],
               ),
               const Text(
                 textAlign: TextAlign.center,
