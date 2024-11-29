@@ -2,6 +2,7 @@ import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
 
 import 'package:flipnrizz/themeSelection.dart';
 import 'package:flipnrizz/util/appColors.dart';
+import 'package:flipnrizz/util/help.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -9,6 +10,7 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Help help = Help();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -33,10 +35,15 @@ class Homepage extends StatelessWidget {
                         fontSize: 40,
                         fontWeight: FontWeight.bold),
                   ),
-                  Image.asset(
-                    'assets/images/question.png',
-                    width: screenHeight * 0.08,
-                    height: screenWidth * 0.09,
+                  GestureDetector(
+                    onTap: () {
+                      help.homeHelp(context);
+                    },
+                    child: Image.asset(
+                      'assets/images/question.png',
+                      width: screenHeight * 0.07,
+                      height: screenWidth * 0.07,
+                    ),
                   ),
                 ],
               ),
