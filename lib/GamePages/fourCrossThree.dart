@@ -175,7 +175,7 @@ class _FourCrossThreeState extends State<FourCrossThree> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(screenHeight * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.02),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,

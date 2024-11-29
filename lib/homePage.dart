@@ -1,3 +1,4 @@
+import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
 import 'package:flipnrizz/MultiThemeSelection.dart';
 import 'package:flipnrizz/themeSelection.dart';
 import 'package:flipnrizz/util/appColors.dart';
@@ -76,7 +77,7 @@ class Homepage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Multithemeselection(),
+                            builder: (context) => CharactorSelect(),
                           ),
                         );
                       },

@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 
 class MultiThreeCrossTwo extends StatefulWidget {
   final int themeIndex;
-  const MultiThreeCrossTwo({super.key, required this.themeIndex});
+  final String playerOne;
+  final String playerTwo;
+  const MultiThreeCrossTwo(
+      {super.key,
+      required this.themeIndex,
+      required this.playerOne,
+      required this.playerTwo});
 
   @override
   State<MultiThreeCrossTwo> createState() => _MultiThreeCrossTwoState();
@@ -42,13 +48,13 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
           children: [
             Container(
               width: screenWidth * 0.9,
-              height: screenHeight * 0.17,
-              decoration: const BoxDecoration(
-                color: AppColors.secondaryAccent,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
+              height: screenHeight * 0.25,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
+                  border: Border.all()),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -57,18 +63,18 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
                         _game.showMultiPauseDialog(context);
                       },
                       icon: Icon(
-                        Icons.pause_circle_filled_outlined,
-                        color: AppColors.primaryAccent,
-                        size: screenHeight * .07,
+                        Icons.pause_presentation_sharp,
+                        color: Colors.black,
+                        size: screenHeight * .05,
                       )),
-                  _buildPlayerStatus('Blue', blueScore, isBlueTurn),
-                  _buildPlayerStatus('Red', redScore, !isBlueTurn),
+                  _buildPlayerStatus(widget.playerOne, blueScore, isBlueTurn),
+                  _buildPlayerStatus(widget.playerTwo, redScore, !isBlueTurn),
                 ],
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(screenHeight * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.02),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -111,9 +117,9 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
                                   match++;
                                   if (match == 3) {
                                     if (blueScore > redScore) {
-                                      Winner = 'BLUE';
+                                      Winner = widget.playerOne;
                                     } else {
-                                      Winner = 'RED';
+                                      Winner = widget.playerTwo;
                                     }
                                     _game.showMultiVictoryDiolog(
                                         blueScore, redScore, Winner, context);
@@ -161,13 +167,13 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
   Widget _buildPlayerStatus(String player, int score, bool isActive) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.3,
-      height: MediaQuery.of(context).size.height * 0.05,
+      height: MediaQuery.of(context).size.height * 0.13,
       decoration: BoxDecoration(
-        color: isActive
-            ? (player == 'Blue' ? Colors.blue : Colors.red)
-            : Colors.grey[300],
-        borderRadius: BorderRadius.circular(15),
-      ),
+          color: isActive
+              ? (player == widget.playerOne ? Colors.blue : Colors.red)
+              : Colors.grey[300],
+          borderRadius: BorderRadius.circular(0),
+          border: Border.all()),
       child: Center(
         child: Text(
           '$player: $score',

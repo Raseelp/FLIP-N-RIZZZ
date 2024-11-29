@@ -3,7 +3,10 @@ import 'package:flipnrizz/util/appColors.dart';
 import 'package:flutter/material.dart';
 
 class Multithemeselection extends StatelessWidget {
-  const Multithemeselection({super.key});
+  final String playerOne;
+  final String playerTwo;
+  const Multithemeselection(
+      {super.key, required this.playerOne, required this.playerTwo});
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +55,11 @@ class Multithemeselection extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  MultiDifficulty(themeIndex: 0),
+                              builder: (context) => MultiDifficulty(
+                                themeIndex: 0,
+                                playerOne: playerOne,
+                                playerTwo: playerTwo,
+                              ),
                             ),
                           );
                         },
@@ -68,8 +74,11 @@ class Multithemeselection extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  MultiDifficulty(themeIndex: 0),
+                              builder: (context) => MultiDifficulty(
+                                themeIndex: 0,
+                                playerOne: playerOne,
+                                playerTwo: playerTwo,
+                              ),
                             ),
                           );
                         },
@@ -84,8 +93,11 @@ class Multithemeselection extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  MultiDifficulty(themeIndex: 0),
+                              builder: (context) => MultiDifficulty(
+                                themeIndex: 0,
+                                playerOne: playerOne,
+                                playerTwo: playerTwo,
+                              ),
                             ),
                           );
                         },

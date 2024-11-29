@@ -6,7 +6,13 @@ import 'package:flutter/material.dart';
 
 class MultiDifficulty extends StatefulWidget {
   final int themeIndex;
-  const MultiDifficulty({super.key, required this.themeIndex});
+  final String playerOne;
+  final String playerTwo;
+  const MultiDifficulty(
+      {super.key,
+      required this.themeIndex,
+      required this.playerOne,
+      required this.playerTwo});
 
   @override
   State<MultiDifficulty> createState() => _MultiDifficultyState();
@@ -53,7 +59,10 @@ class _MultiDifficultyState extends State<MultiDifficulty> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MultiThreeCrossTwo(
-                                  themeIndex: widget.themeIndex)),
+                                    themeIndex: widget.themeIndex,
+                                    playerOne: widget.playerOne,
+                                    playerTwo: widget.playerTwo,
+                                  )),
                         );
                       },
                       child: Container(
@@ -68,6 +77,8 @@ class _MultiDifficultyState extends State<MultiDifficulty> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => Multifourcrossthree(
+                                playerOne: widget.playerOne,
+                                playerTwo: widget.playerTwo,
                                 themeIndex: widget.themeIndex),
                           ),
                         );
@@ -84,6 +95,8 @@ class _MultiDifficultyState extends State<MultiDifficulty> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => MultiFivecrossFour(
+                                playerOne: widget.playerOne,
+                                playerTwo: widget.playerTwo,
                                 themeIndex: widget.themeIndex),
                           ),
                         );

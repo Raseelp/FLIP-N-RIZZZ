@@ -1,3 +1,4 @@
+import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
 import 'package:flipnrizz/MultiThemeSelection.dart';
 import 'package:flipnrizz/homePage.dart';
 import 'package:flipnrizz/themeSelection.dart';
@@ -436,8 +437,7 @@ class Game {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        Multithemeselection()));
+                                    builder: (context) => CharactorSelect()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.15,
@@ -694,7 +694,7 @@ class Game {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Multithemeselection(),
+                                  builder: (context) => CharactorSelect(),
                                 ),
                               );
                             },
