@@ -25,17 +25,29 @@ class Game {
       'assets/images/10.png',
     ],
     [
-      'assets/images/c5.png',
-      'assets/images/c7.png',
-      'assets/images/c2.png',
-      'assets/images/c6.png',
-      'assets/images/c3.png',
-      'assets/images/c4.png',
       'assets/images/c1.png',
+      'assets/images/c3.png',
+      'assets/images/bum.png',
+      'assets/images/c6.png',
+      'assets/images/c5.png',
+      'assets/images/c4.png',
+      'assets/images/c7.png',
       'assets/images/c8.png',
       'assets/images/c9.png',
       'assets/images/c10.png',
-    ]
+    ],
+    [
+      'assets/images/r1.png',
+      'assets/images/r3.png',
+      'assets/images/r2.png',
+      'assets/images/r4.png',
+      'assets/images/r5.png',
+      'assets/images/r6.png',
+      'assets/images/r7.png',
+      'assets/images/r8.png',
+      'assets/images/r9.png',
+      'assets/images/r10.png',
+    ],
   ];
 
   List<String> cardsList = [];

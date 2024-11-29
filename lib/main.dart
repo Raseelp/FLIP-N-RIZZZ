@@ -1,3 +1,4 @@
+import 'package:flipnrizz/GamePages/loadingPage.dart';
 import 'package:flipnrizz/homePage.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class FlipNRizz extends StatelessWidget {
           bodyMedium: TextStyle(fontFamily: 'bangers', letterSpacing: 2),
         ),
       ),
-      home: Homepage(),
+      home: LoadingPage(),
     );
   }
 }

@@ -35,8 +35,8 @@ class ThemeSelection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 ' You think you can escape this meme world? Pick a theme or it picks YOU.',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: AppColors.primaryBlue,
+                    fontSize: 24,
                     fontWeight: FontWeight.normal),
               ),
               SizedBox(
@@ -66,12 +66,11 @@ class ThemeSelection extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  DifficultySelection(themeIndex: 0),
-                            ),
-                          );
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DifficultySelection(themeIndex: 1),
+                              ));
                         },
                         child: Container(
                           width: double.infinity,
@@ -85,7 +84,7 @@ class ThemeSelection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  DifficultySelection(themeIndex: 0),
+                                  DifficultySelection(themeIndex: 2),
                             ),
                           );
                         },

@@ -38,8 +38,8 @@ class Multithemeselection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 ' You think you can escape this meme world? Pick a theme or it picks YOU.',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: AppColors.primaryBlue,
+                    fontSize: 24,
                     fontWeight: FontWeight.normal),
               ),
               SizedBox(
@@ -75,7 +75,7 @@ class Multithemeselection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => MultiDifficulty(
-                                themeIndex: 0,
+                                themeIndex: 1,
                                 playerOne: playerOne,
                                 playerTwo: playerTwo,
                               ),
@@ -94,7 +94,7 @@ class Multithemeselection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => MultiDifficulty(
-                                themeIndex: 0,
+                                themeIndex: 2,
                                 playerOne: playerOne,
                                 playerTwo: playerTwo,
                               ),
