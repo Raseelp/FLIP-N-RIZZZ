@@ -58,7 +58,7 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -66,77 +66,116 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
           children: [
             Container(
               width: screenWidth * 0.9,
-              height: screenHeight * 0.17,
-              decoration: const BoxDecoration(
-                color: AppColors.secondaryAccent,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              height: screenHeight * 0.25,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
+                  border: Border.all()),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        _game.showPauseDialog(
-                            context, stopTimer, startOrContinueTimer);
-                      },
-                      icon: Icon(
-                        Icons.pause_circle_filled_outlined,
-                        color: AppColors.primaryAccent,
-                        size: screenHeight * .07,
-                      )),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$scores',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            _game.showPauseDialog(
+                                context, stopTimer, startOrContinueTimer);
+                          },
+                          icon: Icon(
+                            Icons.pause_presentation_sharp,
+                            color: Colors.black,
+                            size: screenHeight * .05,
+                          )),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'RIZZCOINS',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$scores',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: Colors.white,
+                            border: Border.all()),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'brainflips',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$tries',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: Colors.white,
+                            border: Border.all()),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'ticktock',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$tries',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(screenHeight * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.02),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,

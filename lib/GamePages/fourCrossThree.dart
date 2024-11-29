@@ -61,7 +61,7 @@ class _FourCrossThreeState extends State<FourCrossThree> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.lightCyan,
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -69,13 +69,13 @@ class _FourCrossThreeState extends State<FourCrossThree> {
           children: [
             Container(
               width: screenWidth * 0.9,
-              height: screenHeight * 0.17,
-              decoration: const BoxDecoration(
-                color: AppColors.secondaryAccent,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
+              height: screenHeight * 0.25,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
+                  border: Border.all()),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -85,52 +85,88 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                             context, stopTimer, startOrContinueTimer);
                       },
                       icon: Icon(
-                        Icons.pause_circle_filled_outlined,
-                        color: AppColors.primaryAccent,
-                        size: screenHeight * .07,
+                        Icons.pause_presentation_sharp,
+                        color: Colors.black,
+                        size: screenHeight * .05,
                       )),
                   Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
+                    width: screenWidth * 0.23,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(),
+                      color: Colors.white,
                     ),
                     child: Center(
-                      child: Text(
-                        '$scores',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'RIZZCOINS',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            '$scores',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
+                    width: screenWidth * 0.23,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(),
+                      color: Colors.white,
                     ),
                     child: Center(
-                      child: Text(
-                        '$tries',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'brainflips',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            '$tries',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
+                    width: screenWidth * 0.23,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(),
+                      color: Colors.white,
                     ),
                     child: Center(
-                      child: Text(
-                        '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Ticktock',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     ),
                   )

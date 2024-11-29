@@ -69,77 +69,122 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
           children: [
             Container(
               width: screenWidth * 0.9,
-              height: screenHeight * 0.17,
-              decoration: const BoxDecoration(
+              height: screenHeight * 0.24,
+              decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(0),
                 ),
+                border: Border.all(),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        _game.showPauseDialog(
-                            context, stopTimer, startOrContinueTimer);
-                      },
-                      icon: Icon(
-                        Icons.pause_circle_filled_outlined,
-                        color: AppColors.primaryAccent,
-                        size: screenHeight * .07,
-                      )),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$scores',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                  SizedBox(
+                    height: screenHeight * 0.03,
                   ),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$tries',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          _game.showPauseDialog(
+                              context, stopTimer, startOrContinueTimer);
+                        },
+                        icon: Icon(
+                          Icons.pause_presentation_sharp,
+                          color: Colors.black,
+                          size: screenHeight * .05,
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'RizzCoins',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$scores',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'BRAINFLIPS',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$tries',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: Colors.white,
+                            border: Border.all()),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'ticktock',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: screenWidth * 0.2,
-                    height: screenHeight * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.primaryAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(screenHeight * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.02),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
