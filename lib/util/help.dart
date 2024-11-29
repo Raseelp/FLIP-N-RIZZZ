@@ -197,4 +197,109 @@ class Help {
       },
     );
   }
+
+  void difficultySelecttHelp(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Stack(children: [
+          AlertDialog(
+            backgroundColor: Colors.black.withOpacity(0.5),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.width * 1.7,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .25,
+                  ),
+                  const Text(
+                    'hey, old soul',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    'You can chose how much you should rot your brain',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .05,
+                  ),
+                  const Text(
+                    'you have three options,but let me be honest,this is ohio so,you never know what to expect',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .07,
+                  ),
+                  const Text(
+                    '1.ohio mode:mild=>            3x2 grid',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    '2.ohio mode:peak chaos=> 4x2 grid',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    '3.ohio mode:absolute rizz=> 5x4 grid',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Got it',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'bangers',
+                            color: Colors.white),
+                      ))
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+              left: MediaQuery.of(context).size.width * 0.2,
+              child: Image.asset(
+                'assets/images/untilbg.png',
+                width: MediaQuery.of(context).size.width * 0.6,
+              ))
+        ]);
+      },
+    );
+  }
 }
