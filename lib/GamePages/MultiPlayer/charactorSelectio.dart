@@ -1,5 +1,6 @@
 import 'package:flipnrizz/MultiThemeSelection.dart';
 import 'package:flipnrizz/util/appColors.dart';
+import 'package:flipnrizz/util/help.dart';
 import 'package:flutter/material.dart';
 
 class CharactorSelect extends StatelessWidget {
@@ -7,6 +8,7 @@ class CharactorSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Help help = Help();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController nameOneController =
@@ -58,31 +60,46 @@ class CharactorSelect extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          side: const BorderSide(width: 2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              side: const BorderSide(width: 2),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                              backgroundColor: Colors.white),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Multithemeselection(
+                                      playerOne: nameOneController.text,
+                                      playerTwo: nameTwoController.text),
+                                ));
+                          },
+                          child: const Text(
+                            'Let The Duel begin',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontFamily: 'bangers',
+                                letterSpacing: 2),
                           ),
-                          backgroundColor: Colors.white),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Multithemeselection(
-                                  playerOne: nameOneController.text,
-                                  playerTwo: nameTwoController.text),
-                            ));
-                      },
-                      child: const Text(
-                        'Let The Duel begin',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'bangers',
-                            letterSpacing: 2),
-                      ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            help.characterSelectHelp(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/question.png',
+                            width: screenHeight * 0.07,
+                            height: screenWidth * 0.07,
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),

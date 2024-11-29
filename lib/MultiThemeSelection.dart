@@ -1,5 +1,6 @@
 import 'package:flipnrizz/GamePages/MultiPlayer/multiDifficulty.dart';
 import 'package:flipnrizz/util/appColors.dart';
+import 'package:flipnrizz/util/help.dart';
 import 'package:flutter/material.dart';
 
 class Multithemeselection extends StatelessWidget {
@@ -10,6 +11,7 @@ class Multithemeselection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Help help = Help();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -24,12 +26,27 @@ class Multithemeselection extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.07,
               ),
-              const Text(
-                'Vibe Select',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Vibe Select',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      help.vibeSelectHelp(context);
+                    },
+                    child: Image.asset(
+                      'assets/images/question.png',
+                      width: screenHeight * 0.07,
+                      height: screenWidth * 0.07,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: screenHeight * 0.07,

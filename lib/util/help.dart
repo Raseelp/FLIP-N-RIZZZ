@@ -214,7 +214,7 @@ class Help {
                     height: MediaQuery.of(context).size.width * .25,
                   ),
                   const Text(
-                    'hey, old soul',
+                    'hey, Internet Grandpa',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -283,6 +283,111 @@ class Help {
                       },
                       child: const Text(
                         'Got it',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'bangers',
+                            color: Colors.white),
+                      ))
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+              left: MediaQuery.of(context).size.width * 0.2,
+              child: Image.asset(
+                'assets/images/untilbg.png',
+                width: MediaQuery.of(context).size.width * 0.6,
+              ))
+        ]);
+      },
+    );
+  }
+
+  void characterSelectHelp(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Stack(children: [
+          AlertDialog(
+            backgroundColor: Colors.black.withOpacity(0.5),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.width * 1.7,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .25,
+                  ),
+                  const Text(
+                    'Reallyy...',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    'You really want help on this,cmon iam really dissappointed',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .05,
+                  ),
+                  const Text(
+                    'iam sorry,you poor boomer brain\'s, probabbly trying to figure out what tf is a sigma,no?',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .07,
+                  ),
+                  const Text(
+                    'SO HERE YOU CAN NAME YOUR CHARACTER',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    'YOU CAN DO IT BY CLICKING ON THE PLACEHOLDER NAMES',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  const Text(
+                    'SO YEAH HAVE FUN WITH YOU BOOMER FRIEND',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * .03,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Got it,JEEZ',
                         style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'bangers',
