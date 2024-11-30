@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
+import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FiveCrossFour extends StatefulWidget {
   final int themeIndex;
@@ -21,6 +23,7 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
   bool _isCardFlipping = false;
   int _secondsElapsed = 0;
   late Game _game;
+  bool isSuccess = false;
   @override
   void initState() {
     _game = Game(widget.themeIndex, cardCount: 20);
@@ -74,7 +77,7 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
                   ),
                   border: Border.all()),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -170,6 +173,45 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
                       )
                     ],
                   ),
+                  Consumer<FlipMessageProvider>(
+                    builder: (context, provider, child) {
+                      return isSuccess
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.emeraldGreen,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.primaryAccent,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -210,9 +252,12 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
                                         _game.matchCheck[1].values.first &&
                                     _game.matchCheck[0].keys.first !=
                                         _game.matchCheck[1].keys.first) {
-                                  print('True');
                                   scores += 100;
                                   matches++;
+                                  isSuccess = true;
+                                  context
+                                      .read<FlipMessageProvider>()
+                                      .setSuccessMessage();
                                   if (matches == 10) {
                                     String time =
                                         '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}';
@@ -224,6 +269,10 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
                                   setState(() {
                                     _isCardFlipping =
                                         true; // Prevent further taps
+                                    isSuccess = false;
+                                    context
+                                        .read<FlipMessageProvider>()
+                                        .setFailureMessage();
                                   });
                                   Future.delayed(Duration(milliseconds: 500),
                                       () {
