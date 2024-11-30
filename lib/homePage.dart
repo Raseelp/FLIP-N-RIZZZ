@@ -25,35 +25,42 @@ class Homepage extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.07,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Flip N Rizzz',
-                    style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      help.homeHelp(context);
-                    },
-                    child: Image.asset(
-                      'assets/images/question.png',
-                      width: screenHeight * 0.07,
-                      height: screenWidth * 0.07,
+              Container(
+                decoration: BoxDecoration(color: AppColors.primaryAccent),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Flip N Rizzz',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            help.homeHelp(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/question.png',
+                            width: screenHeight * 0.07,
+                            height: screenWidth * 0.07,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              const Text(
-                textAlign: TextAlign.center,
-                'Fly solo or flex in a faceoff—choose now!',
-                style: TextStyle(
-                    color: AppColors.primaryBlue,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
+                    const Text(
+                      textAlign: TextAlign.center,
+                      'Fly solo or flex in a faceoff—choose now!',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: screenHeight * 0.01,

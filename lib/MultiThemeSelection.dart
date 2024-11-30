@@ -26,41 +26,47 @@ class Multithemeselection extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.07,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Vibe Select',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      help.vibeSelectHelp(context);
-                    },
-                    child: Image.asset(
-                      'assets/images/question.png',
-                      width: screenHeight * 0.07,
-                      height: screenWidth * 0.07,
+              Container(
+                height: screenHeight * 0.2,
+                decoration: const BoxDecoration(color: AppColors.primaryAccent),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Vibe Select',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            help.vibeSelectHelp(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/question.png',
+                            width: screenHeight * 0.07,
+                            height: screenWidth * 0.07,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    const Text(
+                      textAlign: TextAlign.center,
+                      'Mog the moment or Chadify the challenge—choose your world wisely!',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
-                height: screenHeight * 0.07,
-              ),
-              const Text(
-                textAlign: TextAlign.center,
-                ' You think you can escape this meme world? Pick a theme or it picks YOU.',
-                style: TextStyle(
-                    color: AppColors.primaryBlue,
-                    fontSize: 24,
-                    fontWeight: FontWeight.normal),
-              ),
-              SizedBox(
-                height: screenHeight * 0.04,
+                height: screenHeight * 0.05,
               ),
               Stack(
                 children: [
