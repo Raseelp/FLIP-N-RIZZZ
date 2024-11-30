@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
+import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FourCrossThree extends StatefulWidget {
   final int themeIndex;
@@ -16,6 +18,7 @@ class _FourCrossThreeState extends State<FourCrossThree> {
   int tries = 0;
   int scores = 0;
   int matches = 0;
+  bool isSuccess = false;
 
   Timer? _timer; // Timer instance
   bool _isTimerActive = false;
@@ -76,100 +79,144 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                     bottom: Radius.circular(0),
                   ),
                   border: Border.all()),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        _game.showPauseDialog(
-                            context, stopTimer, startOrContinueTimer);
-                      },
-                      icon: Icon(
-                        Icons.pause_presentation_sharp,
-                        color: Colors.black,
-                        size: screenHeight * .05,
-                      )),
-                  Container(
-                    width: screenWidth * 0.23,
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'RIZZCOINS',
-                            style: TextStyle(fontSize: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            _game.showPauseDialog(
+                                context, stopTimer, startOrContinueTimer);
+                          },
+                          icon: Icon(
+                            Icons.pause_presentation_sharp,
+                            color: Colors.black,
+                            size: screenHeight * .05,
+                          )),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'RIZZCOINS',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$scores',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          Text(
-                            '$scores',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'brainflips',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '$tries',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth * 0.23,
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Ticktock',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: screenWidth * 0.23,
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'brainflips',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            '$tries',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
+                  Consumer<FlipMessageProvider>(
+                    builder: (context, provider, child) {
+                      return isSuccess
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.emeraldGreen,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.primaryAccent,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            );
+                    },
                   ),
-                  Container(
-                    width: screenWidth * 0.23,
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Ticktock',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
@@ -212,6 +259,10 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                                         _game.matchCheck[1].keys.first) {
                                   scores += 100;
                                   matches++;
+                                  isSuccess = true;
+                                  context
+                                      .read<FlipMessageProvider>()
+                                      .setSuccessMessage();
                                   if (matches == 6) {
                                     String time =
                                         '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}';
@@ -224,6 +275,10 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                                   setState(() {
                                     _isCardFlipping =
                                         true; // Prevent further taps
+                                    isSuccess = false;
+                                    context
+                                        .read<FlipMessageProvider>()
+                                        .setFailureMessage();
                                   });
                                   Future.delayed(Duration(milliseconds: 500),
                                       () {
