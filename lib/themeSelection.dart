@@ -70,7 +70,7 @@ class ThemeSelection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  DifficultySelection(themeIndex: 0),
+                                  const DifficultySelection(themeIndex: 0),
                             ),
                           );
                         },
@@ -86,7 +86,7 @@ class ThemeSelection extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    DifficultySelection(themeIndex: 1),
+                                    const DifficultySelection(themeIndex: 1),
                               ));
                         },
                         child: Container(
@@ -101,7 +101,7 @@ class ThemeSelection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  DifficultySelection(themeIndex: 2),
+                                  const DifficultySelection(themeIndex: 2),
                             ),
                           );
                         },

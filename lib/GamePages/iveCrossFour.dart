@@ -42,7 +42,7 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
   void startOrContinueTimer() {
     if (!_isTimerActive) {
       // Only start the timer if it's not already running
-      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {
           _secondsElapsed++;
         });
@@ -274,8 +274,8 @@ class _FiveCrossFourState extends State<FiveCrossFour> {
                                         .read<FlipMessageProvider>()
                                         .setFailureMessage();
                                   });
-                                  Future.delayed(Duration(milliseconds: 500),
-                                      () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 500), () {
                                     setState(() {
                                       _game.gameImg![_game.matchCheck[0].keys
                                           .first] = _game.hiddenCardPath;

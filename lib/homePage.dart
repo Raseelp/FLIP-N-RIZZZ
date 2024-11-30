@@ -72,7 +72,7 @@ class Homepage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThemeSelection(),
+                            builder: (context) => const ThemeSelection(),
                           ),
                         );
                       },
@@ -94,7 +94,7 @@ class Homepage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CharactorSelect(),
+                            builder: (context) => const CharactorSelect(),
                           ),
                         );
                       },

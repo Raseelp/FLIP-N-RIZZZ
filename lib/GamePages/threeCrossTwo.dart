@@ -43,7 +43,7 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
   void startOrContinueTimer() {
     if (!_isTimerActive) {
       // Only start the timer if it's not already running
-      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {
           _secondsElapsed++;
         });

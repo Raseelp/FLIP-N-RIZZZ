@@ -10,7 +10,7 @@ class Game {
   final String hiddenCardPath = 'assets/images/hidden.png';
   final int cardCount;
   final int themeIndex;
-  int _secondsElapsed = 0;
+  final int _secondsElapsed = 0;
   List<String>? gameImg;
   final List<List<String>> themes = [
     [
@@ -100,14 +100,14 @@ class Game {
 
   void showVictoryDiolog(int moves, int scores, Function stopTimer,
       BuildContext context, String time) {
-    final ConfettiController _confettiController =
+    final ConfettiController confettiController =
         ConfettiController(duration: const Duration(seconds: 5));
     stopTimer();
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        _confettiController.play();
+        confettiController.play();
         return WillPopScope(
           onWillPop: () async {
             return false;
@@ -355,7 +355,7 @@ class Game {
                 Positioned(
                   left: MediaQuery.of(context).size.width * 0.05,
                   child: ConfettiWidget(
-                    confettiController: _confettiController,
+                    confettiController: confettiController,
                     blastDirectionality:
                         BlastDirectionality.explosive, // Can be directional
                     shouldLoop: true,
@@ -368,7 +368,7 @@ class Game {
                 Positioned(
                   right: MediaQuery.of(context).size.width * 0.05,
                   child: ConfettiWidget(
-                    confettiController: _confettiController,
+                    confettiController: confettiController,
                     blastDirectionality:
                         BlastDirectionality.explosive, // Can be directional
                     shouldLoop: true,
@@ -395,13 +395,13 @@ class Game {
 
   void showMultiVictoryDiolog(int bluescores, int redScores, String Winner,
       BuildContext context, String playerOne, String playerTwo) {
-    final ConfettiController _multiConfettiController =
+    final ConfettiController multiConfettiController =
         ConfettiController(duration: const Duration(seconds: 5));
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        _multiConfettiController.play();
+        multiConfettiController.play();
         return WillPopScope(
           onWillPop: () async {
             return false;
@@ -424,7 +424,7 @@ class Game {
                         ),
                         Text(
                           textAlign: TextAlign.center,
-                          '$Winner' + genarateMultiWinMsg(),
+                          '$Winner${genarateMultiWinMsg()}',
                           style: const TextStyle(
                               color: AppColors.primaryText, fontSize: 35),
                         ),
@@ -599,7 +599,7 @@ class Game {
                 Positioned(
                   left: MediaQuery.of(context).size.width * 0.05,
                   child: ConfettiWidget(
-                    confettiController: _multiConfettiController,
+                    confettiController: multiConfettiController,
                     blastDirectionality:
                         BlastDirectionality.explosive, // Can be directional
                     shouldLoop: true,
@@ -612,7 +612,7 @@ class Game {
                 Positioned(
                   right: MediaQuery.of(context).size.width * 0.05,
                   child: ConfettiWidget(
-                    confettiController: _multiConfettiController,
+                    confettiController: multiConfettiController,
                     blastDirectionality:
                         BlastDirectionality.explosive, // Can be directional
                     shouldLoop: true,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(FlipNRizz());
+  runApp(const FlipNRizz());
 }
 
 class FlipNRizz extends StatelessWidget {
@@ -20,7 +20,7 @@ class FlipNRizz extends StatelessWidget {
             bodyMedium: TextStyle(fontFamily: 'bangers', letterSpacing: 2),
           ),
         ),
-        home: LoadingPage(),
+        home: const LoadingPage(),
       ),
     );
   }

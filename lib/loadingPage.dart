@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flipnrizz/homePage.dart';
-import 'package:flipnrizz/util/help.dart';
 import 'package:flutter/material.dart';
 
 class LoadingPage extends StatefulWidget {
