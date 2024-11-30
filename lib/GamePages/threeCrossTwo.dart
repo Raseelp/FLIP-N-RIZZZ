@@ -183,23 +183,41 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                   ),
                   Consumer<FlipMessageProvider>(
                     builder: (context, provider, child) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: AppColors.pastelYellow,
-                            borderRadius: BorderRadius.circular(0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            textAlign: TextAlign.center,
-                            provider.message,
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      );
+                      return isSuccess
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.emeraldGreen,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.primaryAccent,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            );
                     },
                   ),
                 ],
@@ -246,6 +264,7 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                             _game.matchCheck[1].keys.first) {
                                       scores += 100;
                                       match++;
+                                      isSuccess = true;
                                       context
                                           .read<FlipMessageProvider>()
                                           .setSuccessMessage();
@@ -260,6 +279,7 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                       setState(() {
                                         _isCardFlipping =
                                             true; // Prevent further taps
+                                        isSuccess = false;
                                         context
                                             .read<FlipMessageProvider>()
                                             .setFailureMessage();
