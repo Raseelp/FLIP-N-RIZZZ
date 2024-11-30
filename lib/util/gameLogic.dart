@@ -1,3 +1,4 @@
+import 'package:confetti/confetti.dart';
 import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
 import 'package:flipnrizz/MultiThemeSelection.dart';
 import 'package:flipnrizz/homePage.dart';
@@ -99,11 +100,14 @@ class Game {
 
   void showVictoryDiolog(int moves, int scores, Function stopTimer,
       BuildContext context, String time) {
+    final ConfettiController _confettiController =
+        ConfettiController(duration: const Duration(seconds: 5));
     stopTimer();
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
+        _confettiController.play();
         return WillPopScope(
           onWillPop: () async {
             return false;
@@ -113,241 +117,268 @@ class Game {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
               backgroundColor: AppColors.pastelYellow,
-              content: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.width * 1.5,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width * .15,
-                      ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        genarateSingleWinMsg(),
-                        style: const TextStyle(
-                            color: AppColors.primaryText, fontSize: 35),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.30,
-                                height: MediaQuery.of(context).size.width * 0.3,
-                                decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/ghost.png',
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.7,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    Positioned(
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            const Text(
-                                              'Brainflips:',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 24),
-                                            ),
-                                            Text(
-                                              ' $moves',
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.30,
-                                height: MediaQuery.of(context).size.width * 0.3,
-                                decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/bum.png',
-                                    ),
-                                    Positioned(
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            const Text(
-                                              'ticktock:',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 24),
-                                            ),
-                                            Text(
-                                              ' $time',
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.4,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(0),
-                            color: Colors.white,
-                          ),
-                          child: Stack(children: [
-                            Image.asset(
-                              'assets/images/aura.png',
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              fit: BoxFit.fill,
-                            ),
-                            Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    'Aurapoints',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30),
-                                  ),
-                                  Text(
-                                    '+ $scores',
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
+              content: Stack(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.width * 1.5,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width * .15,
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: MediaQuery.of(context).size.width * 0.3,
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(0),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        Text(
+                          textAlign: TextAlign.center,
+                          genarateSingleWinMsg(),
+                          style: const TextStyle(
+                              color: AppColors.primaryText, fontSize: 35),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ThemeSelection()));
-                              },
-                              child: Container(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.30,
                                   height:
-                                      MediaQuery.of(context).size.width * 0.25,
+                                      MediaQuery.of(context).size.width * 0.3,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/ghost.gif'),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/sa.png',
-                                      fit: BoxFit.fill,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.25,
-                                    ),
-                                    const Positioned(
-                                      child: Center(
-                                        child: Text(
-                                          'Restart',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              const Text(
+                                                'Brainflips:',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 24),
+                                              ),
+                                              Text(
+                                                ' $moves',
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ])),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const Homepage(),
+                                      )
+                                    ],
                                   ),
-                                );
-                              },
-                              child: Container(
+                                ),
+                                Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.30,
                                   height:
-                                      MediaQuery.of(context).size.width * 0.25,
+                                      MediaQuery.of(context).size.width * 0.3,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image:
+                                            AssetImage('assets/images/bum.gif'),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/untiledited.png',
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.25,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    const Positioned(
-                                      child: Center(
-                                        child: Text(
-                                          'Dip NOW',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              const Text(
+                                                'ticktock:',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 24),
+                                              ),
+                                              Text(
+                                                ' $time',
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ])),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
                             )
                           ],
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: MediaQuery.of(context).size.width * 0.4,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  image: AssetImage('assets/images/aura1.gif'),
+                                  fit: BoxFit.cover),
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(0),
+                              color: Colors.white,
+                            ),
+                            child: Stack(children: [
+                              Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Aurapoints',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    ),
+                                    Text(
+                                      '+ $scores',
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 45,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ]),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.width * 0.3,
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(0),
+                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ThemeSelection()));
+                                },
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.30,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.25,
+                                  decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/gtasa.gif'),
+                                        fit: BoxFit.cover),
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  child: const Stack(
+                                    children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Text(
+                                            'Restart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const Homepage(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.30,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/until.gif'),
+                                          fit: BoxFit.cover),
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: const Stack(children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Text(
+                                            'Dip NOW',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                      )
+                                    ])),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.05,
+                  child: ConfettiWidget(
+                    confettiController: _confettiController,
+                    blastDirectionality:
+                        BlastDirectionality.explosive, // Can be directional
+                    shouldLoop: true,
+                    blastDirection: 3.14, // Angle of the confetti
+                    maxBlastForce: 5, // Max force of confetti particles
+                    minBlastForce: 2, // Min force of confetti particles
+                    numberOfParticles: 50, // Number of confetti particles
+                  ),
+                ),
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.05,
+                  child: ConfettiWidget(
+                    confettiController: _confettiController,
+                    blastDirectionality:
+                        BlastDirectionality.explosive, // Can be directional
+                    shouldLoop: true,
+                    blastDirection: 3.14, // Angle of the confetti
+                    maxBlastForce: 5, // Max force of confetti particles
+                    minBlastForce: 2, // Min force of confetti particles
+                    numberOfParticles: 50, // Number of confetti particles
+                  ),
+                ),
+              ]),
             ),
             Positioned(
                 top: MediaQuery.of(context).size.width * -0.03,
@@ -364,10 +395,13 @@ class Game {
 
   void showMultiVictoryDiolog(int bluescores, int redScores, String Winner,
       BuildContext context, String playerOne, String playerTwo) {
+    final ConfettiController _multiConfettiController =
+        ConfettiController(duration: const Duration(seconds: 5));
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
+        _multiConfettiController.play();
         return WillPopScope(
           onWillPop: () async {
             return false;
@@ -378,192 +412,217 @@ class Game {
                   borderRadius: BorderRadius.circular(0),
                   side: const BorderSide(width: 1)),
               backgroundColor: AppColors.pastelYellow,
-              content: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width * .15,
-                      ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        '$Winner' + genarateMultiWinMsg(),
-                        style: const TextStyle(
-                            color: AppColors.primaryText, fontSize: 35),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.22,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  color: AppColors.cardBack,
-                                  child: Center(
-                                    child: Text(
-                                      playerOne,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '$bluescores',
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      fontSize: 70,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.22,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  color: AppColors.primaryAccent,
-                                  child: Center(
-                                    child: Text(
-                                      playerTwo,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '$redScores',
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 70,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: MediaQuery.of(context).size.width * 0.3,
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(0),
-                            color: Colors.white),
-                        child: Row(
+              content: Stack(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width * .15,
+                        ),
+                        Text(
+                          textAlign: TextAlign.center,
+                          '$Winner' + genarateMultiWinMsg(),
+                          style: const TextStyle(
+                              color: AppColors.primaryText, fontSize: 35),
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Multithemeselection(
-                                              playerOne: playerOne,
-                                              playerTwo: playerTwo,
-                                            )));
-                              },
-                              child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.30,
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: BorderRadius.circular(0),
-                                  ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/sa.png',
-                                      fit: BoxFit.fill,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.25,
-                                    ),
-                                    const Positioned(
-                                      child: Center(
-                                        child: Text(
-                                          'Restart',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue,
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.22,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    color: AppColors.cardBack,
+                                    child: Center(
+                                      child: Text(
+                                        playerOne,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    )
-                                  ])),
+                                    ),
+                                  ),
+                                  Text(
+                                    '$bluescores',
+                                    style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        fontSize: 70,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const Homepage(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.30,
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: BorderRadius.circular(0),
-                                  ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/untiledited.png',
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.25,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    const Positioned(
-                                      child: Center(
-                                        child: Text(
-                                          'Dip NOW',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red,
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.22,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    color: AppColors.primaryAccent,
+                                    child: Center(
+                                      child: Text(
+                                        playerTwo,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    )
-                                  ])),
+                                    ),
+                                  ),
+                                  Text(
+                                    '$redScores',
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 70,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
-                      )
-                    ],
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.width * 0.3,
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(0),
+                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Multithemeselection(
+                                                playerOne: playerOne,
+                                                playerTwo: playerTwo,
+                                              )));
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.30,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/gtasa.gif'),
+                                          fit: BoxFit.cover),
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: const Stack(children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Text(
+                                            'Restart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                      )
+                                    ])),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const Homepage(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.30,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/until.gif'),
+                                          fit: BoxFit.cover),
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: const Stack(children: [
+                                      Positioned(
+                                        child: Center(
+                                          child: Text(
+                                            'Dip NOW',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                      )
+                                    ])),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.05,
+                  child: ConfettiWidget(
+                    confettiController: _multiConfettiController,
+                    blastDirectionality:
+                        BlastDirectionality.explosive, // Can be directional
+                    shouldLoop: true,
+                    blastDirection: 3.14, // Angle of the confetti
+                    maxBlastForce: 5, // Max force of confetti particles
+                    minBlastForce: 2, // Min force of confetti particles
+                    numberOfParticles: 50, // Number of confetti particles
+                  ),
+                ),
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.05,
+                  child: ConfettiWidget(
+                    confettiController: _multiConfettiController,
+                    blastDirectionality:
+                        BlastDirectionality.explosive, // Can be directional
+                    shouldLoop: true,
+                    blastDirection: 3.14, // Angle of the confetti
+                    maxBlastForce: 5, // Max force of confetti particles
+                    minBlastForce: 2, // Min force of confetti particles
+                    numberOfParticles: 50, // Number of confetti particles
+                  ),
+                ),
+              ]),
             ),
             Positioned(
                 top: MediaQuery.of(context).size.width * 0.03,
@@ -623,12 +682,14 @@ class Game {
                               width: MediaQuery.of(context).size.width * 0.5,
                               height: MediaQuery.of(context).size.width * 0.5,
                               decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage('assets/images/bum.gif'),
+                                    fit: BoxFit.cover),
                                 border: Border.all(),
                                 borderRadius: BorderRadius.circular(0),
                               ),
-                              child: Stack(children: [
-                                Image.asset('assets/images/bum.png'),
-                                const Positioned(
+                              child: const Stack(children: [
+                                Positioned(
                                   child: Center(
                                     child: Text(
                                       'Continue',
@@ -659,14 +720,15 @@ class Game {
                                   height:
                                       MediaQuery.of(context).size.width * 0.19,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/gtasa.gif'),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/sa.png',
-                                    ),
-                                    const Positioned(
+                                  child: const Stack(children: [
+                                    Positioned(
                                       child: Center(
                                         child: Text(
                                           'Restart',
@@ -693,14 +755,15 @@ class Game {
                                   height:
                                       MediaQuery.of(context).size.width * 0.19,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/until.gif'),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/untiledited.png',
-                                    ),
-                                    const Positioned(
+                                  child: const Stack(children: [
+                                    Positioned(
                                       child: Center(
                                         child: Text(
                                           'Dip NOW',
@@ -767,12 +830,14 @@ class Game {
                               width: MediaQuery.of(context).size.width * 0.5,
                               height: MediaQuery.of(context).size.width * 0.5,
                               decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage('assets/images/bum.gif'),
+                                    fit: BoxFit.cover),
                                 border: Border.all(),
                                 borderRadius: BorderRadius.circular(0),
                               ),
-                              child: Stack(children: [
-                                Image.asset('assets/images/bum.png'),
-                                const Positioned(
+                              child: const Stack(children: [
+                                Positioned(
                                   child: Center(
                                     child: Text(
                                       'Continue',
@@ -805,14 +870,16 @@ class Game {
                                   height:
                                       MediaQuery.of(context).size.width * 0.19,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/gtasa.gif',
+                                        ),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/sa.png',
-                                    ),
-                                    const Positioned(
+                                  child: const Stack(children: [
+                                    Positioned(
                                       child: Center(
                                         child: Text(
                                           'Restart',
@@ -839,14 +906,15 @@ class Game {
                                   height:
                                       MediaQuery.of(context).size.width * 0.19,
                                   decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/until.gif'),
+                                        fit: BoxFit.cover),
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
-                                  child: Stack(children: [
-                                    Image.asset(
-                                      'assets/images/untiledited.png',
-                                    ),
-                                    const Positioned(
+                                  child: const Stack(children: [
+                                    Positioned(
                                       child: Center(
                                         child: Text(
                                           'Dip NOW',
