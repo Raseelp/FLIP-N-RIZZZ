@@ -1,6 +1,8 @@
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
+import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MultiThreeCrossTwo extends StatefulWidget {
   final int themeIndex;
@@ -23,6 +25,7 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
   bool isBlueTurn = true;
   bool _isCardFlipping = false;
   int match = 0;
+  bool isSuccess = false;
   String Winner = '';
   // To track elapsed time
 
@@ -51,24 +54,70 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
               height: screenHeight * 0.25,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
+                  borderRadius: const BorderRadius.vertical(
                     bottom: Radius.circular(0),
                   ),
                   border: Border.all()),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        _game.showMultiPauseDialog(context);
-                      },
-                      icon: Icon(
-                        Icons.pause_presentation_sharp,
-                        color: Colors.black,
-                        size: screenHeight * .05,
-                      )),
-                  _buildPlayerStatus(widget.playerOne, blueScore, isBlueTurn),
-                  _buildPlayerStatus(widget.playerTwo, redScore, !isBlueTurn),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            _game.showMultiPauseDialog(context);
+                          },
+                          icon: Icon(
+                            Icons.pause_presentation_sharp,
+                            color: Colors.black,
+                            size: screenHeight * .05,
+                          )),
+                      _buildPlayerStatus(
+                          widget.playerOne, blueScore, isBlueTurn),
+                      _buildPlayerStatus(
+                          widget.playerTwo, redScore, !isBlueTurn),
+                    ],
+                  ),
+                  Consumer<FlipMessageProvider>(
+                    builder: (context, provider, child) {
+                      return isSuccess
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.emeraldGreen,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  color: AppColors.primaryAccent,
+                                  borderRadius: BorderRadius.circular(0)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  provider.message,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -115,6 +164,10 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
                                     redScore += 1;
                                   }
                                   match++;
+                                  isSuccess = true;
+                                  context
+                                      .read<FlipMessageProvider>()
+                                      .setSuccessMessage();
                                   if (match == 3) {
                                     if (blueScore > redScore) {
                                       Winner = widget.playerOne;
@@ -134,6 +187,10 @@ class _MultiThreeCrossTwoState extends State<MultiThreeCrossTwo> {
                                   setState(() {
                                     _isCardFlipping =
                                         true; // Prevent further taps
+                                    isSuccess = false;
+                                    context
+                                        .read<FlipMessageProvider>()
+                                        .setFailureMessage();
                                   });
                                   Future.delayed(
                                       const Duration(milliseconds: 500), () {
