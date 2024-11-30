@@ -50,6 +50,16 @@ class Game {
     ],
   ];
 
+  // String genarateSuccessMsg() {
+  //   success.shuffle();
+  //   return success[0];
+  // }
+
+  // String genarateFailedMsg() {
+  //   fail.shuffle();
+  //   return fail[0];
+  // }
+
   List<String> cardsList = [];
 
   void generateImages(int gridSize) {

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
+import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ThreeCrossTwo extends StatefulWidget {
   final int themeIndex;
@@ -17,8 +19,8 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
   int scores = 0;
   int match = 0;
   bool _isCardFlipping = false;
-  // To track elapsed time
-  Timer? _timer; // Timer instance
+  bool isSuccess = false;
+  Timer? _timer;
   bool _isTimerActive = false;
   int _secondsElapsed = 0;
   late Game _game;
@@ -78,7 +80,7 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                 border: Border.all(),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                     height: screenHeight * 0.03,
@@ -179,6 +181,27 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                       )
                     ],
                   ),
+                  Consumer<FlipMessageProvider>(
+                    builder: (context, provider, child) {
+                      return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            color: AppColors.pastelYellow,
+                            borderRadius: BorderRadius.circular(0)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            provider.message,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -223,6 +246,9 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                             _game.matchCheck[1].keys.first) {
                                       scores += 100;
                                       match++;
+                                      context
+                                          .read<FlipMessageProvider>()
+                                          .setSuccessMessage();
                                       if (match == 3) {
                                         String time =
                                             '${(_secondsElapsed ~/ 60).toString().padLeft(2, '0')}:${(_secondsElapsed % 60).toString().padLeft(2, '0')}';
@@ -234,6 +260,9 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                       setState(() {
                                         _isCardFlipping =
                                             true; // Prevent further taps
+                                        context
+                                            .read<FlipMessageProvider>()
+                                            .setFailureMessage();
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),

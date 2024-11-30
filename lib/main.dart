@@ -1,5 +1,7 @@
 import 'package:flipnrizz/loadingPage.dart';
+import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(FlipNRizz());
@@ -10,13 +12,16 @@ class FlipNRizz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(fontFamily: 'bangers', letterSpacing: 2),
+    return ChangeNotifierProvider(
+      create: (context) => FlipMessageProvider(),
+      child: MaterialApp(
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            bodyMedium: TextStyle(fontFamily: 'bangers', letterSpacing: 2),
+          ),
         ),
+        home: LoadingPage(),
       ),
-      home: LoadingPage(),
     );
   }
 }
