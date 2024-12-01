@@ -1,4 +1,4 @@
-# Flip-N-Rizz
+# Flip-N-Rizz  
 Brace yourself for the ultimate brainrot adventure with FLIP-N-RIZZ, the Skibidi-lit mobile app that flips tradition on its head and serves up pure Sigma energy. This isn’t just your average memory-matching game; it’s a full-on Mog Mode experience, drenched in chaotic, meme-fueled vibes.
 
 Dive into Single Player Chad-dom or bring out your inner Rizzlord in multiplayer mayhem. Customize your themes to match your Chad-core energy, and get ready for dialogues dripping with meme magic. We’re talking Sigma philosophies, Skibidi-Dop dopamine hits, and all the lit banter your brainrot heart desires.
