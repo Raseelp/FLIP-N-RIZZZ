@@ -61,6 +61,10 @@ class _LoadingPageState extends State<LoadingPage> {
                 color: Colors.black,
                 minHeight: 10,
               ),
+              Image.asset(
+                'assets/images/chillguybg.png',
+                width: 200,
+              )
             ],
           ),
         ),
