@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
 import 'package:flipnrizz/util/msgProvider.dart';
@@ -15,6 +16,7 @@ class ThreeCrossTwo extends StatefulWidget {
 }
 
 class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
+  final AudioPlayer _gamePageAudioPlayer = AudioPlayer();
   int tries = 0;
   int scores = 0;
   int match = 0;
@@ -265,6 +267,9 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                       scores += 100;
                                       match++;
                                       isSuccess = true;
+                                      _gamePageAudioPlayer.play(
+                                          AssetSource('sound/goodflip.mp3'));
+
                                       context
                                           .read<FlipMessageProvider>()
                                           .setSuccessMessage();
@@ -283,6 +288,8 @@ class _ThreeCrossTwoState extends State<ThreeCrossTwo> {
                                         context
                                             .read<FlipMessageProvider>()
                                             .setFailureMessage();
+                                        _gamePageAudioPlayer.play(
+                                            AssetSource('sound/badflip.mp3'));
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),

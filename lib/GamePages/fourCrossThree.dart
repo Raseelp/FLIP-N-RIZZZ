@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
 import 'package:flipnrizz/util/msgProvider.dart';
@@ -15,6 +16,8 @@ class FourCrossThree extends StatefulWidget {
 }
 
 class _FourCrossThreeState extends State<FourCrossThree> {
+  final AudioPlayer _gamePageAudioPlayer = AudioPlayer();
+
   int tries = 0;
   int scores = 0;
   int matches = 0;
@@ -260,6 +263,9 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                                   scores += 100;
                                   matches++;
                                   isSuccess = true;
+                                  _gamePageAudioPlayer
+                                      .play(AssetSource('sound/goodflip.mp3'));
+
                                   context
                                       .read<FlipMessageProvider>()
                                       .setSuccessMessage();
@@ -276,6 +282,9 @@ class _FourCrossThreeState extends State<FourCrossThree> {
                                     _isCardFlipping =
                                         true; // Prevent further taps
                                     isSuccess = false;
+                                    _gamePageAudioPlayer
+                                        .play(AssetSource('sound/badflip.mp3'));
+
                                     context
                                         .read<FlipMessageProvider>()
                                         .setFailureMessage();

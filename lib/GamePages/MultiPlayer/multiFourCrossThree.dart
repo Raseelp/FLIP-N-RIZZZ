@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/gameLogic.dart';
 import 'package:flipnrizz/util/msgProvider.dart';
@@ -19,6 +20,8 @@ class Multifourcrossthree extends StatefulWidget {
 }
 
 class _Multifourcrossthree extends State<Multifourcrossthree> {
+  final AudioPlayer _gamePageAudioPlayer = AudioPlayer();
+
   int blueScore = 0; // Score for player 1 (Blue)
   int redScore = 0; // Score for player 2 (Red)
   int tries = 0;
@@ -165,6 +168,9 @@ class _Multifourcrossthree extends State<Multifourcrossthree> {
                                   }
                                   match++;
                                   isSuccess = true;
+                                  _gamePageAudioPlayer
+                                      .play(AssetSource('sound/goodflip.mp3'));
+
                                   context
                                       .read<FlipMessageProvider>()
                                       .setSuccessMessage();
@@ -187,6 +193,9 @@ class _Multifourcrossthree extends State<Multifourcrossthree> {
                                   setState(() {
                                     _isCardFlipping = true;
                                     isSuccess = false;
+                                    _gamePageAudioPlayer
+                                        .play(AssetSource('sound/badflip.mp3'));
+
                                     context
                                         .read<FlipMessageProvider>()
                                         .setFailureMessage();
