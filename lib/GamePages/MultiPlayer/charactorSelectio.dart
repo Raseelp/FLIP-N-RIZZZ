@@ -3,18 +3,23 @@ import 'package:flipnrizz/util/appColors.dart';
 import 'package:flipnrizz/util/help.dart';
 import 'package:flutter/material.dart';
 
-class CharactorSelect extends StatelessWidget {
+class CharactorSelect extends StatefulWidget {
   const CharactorSelect({super.key});
 
+  @override
+  State<CharactorSelect> createState() => _CharactorSelectState();
+}
+
+class _CharactorSelectState extends State<CharactorSelect> {
+  TextEditingController nameOneController =
+      TextEditingController(text: 'Sigma one');
+  TextEditingController nameTwoController =
+      TextEditingController(text: 'Sigma Two');
   @override
   Widget build(BuildContext context) {
     Help help = Help();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    TextEditingController nameOneController =
-        TextEditingController(text: 'Sigma one');
-    TextEditingController nameTwoController =
-        TextEditingController(text: 'Sigma Two');
 
     return Scaffold(
       backgroundColor: AppColors.lightCyan,
