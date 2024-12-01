@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flipnrizz/GamePages/MultiPlayer/charactorSelectio.dart';
 import 'package:flipnrizz/MultiThemeSelection.dart';
@@ -12,6 +13,7 @@ class Game {
   final int themeIndex;
   final int _secondsElapsed = 0;
   List<String>? gameImg;
+  final AudioPlayer _victoryAudioPlayer = AudioPlayer();
   final List<List<String>> themes = [
     [
       'assets/images/1.png',
@@ -103,6 +105,8 @@ class Game {
     final ConfettiController confettiController =
         ConfettiController(duration: const Duration(seconds: 5));
     stopTimer();
+    _victoryAudioPlayer.setReleaseMode(ReleaseMode.loop);
+    _victoryAudioPlayer.play(AssetSource('sound/skibidi.mp3'));
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -110,6 +114,7 @@ class Game {
         confettiController.play();
         return WillPopScope(
           onWillPop: () async {
+            _victoryAudioPlayer.stop();
             return false;
           },
           child: Stack(children: [
@@ -275,6 +280,7 @@ class Game {
                             children: [
                               GestureDetector(
                                 onTap: () {
+                                  _victoryAudioPlayer.stop();
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
@@ -312,6 +318,7 @@ class Game {
                               ),
                               GestureDetector(
                                 onTap: () {
+                                  _victoryAudioPlayer.stop();
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -397,6 +404,8 @@ class Game {
       BuildContext context, String playerOne, String playerTwo) {
     final ConfettiController multiConfettiController =
         ConfettiController(duration: const Duration(seconds: 5));
+    _victoryAudioPlayer.setReleaseMode(ReleaseMode.loop);
+    _victoryAudioPlayer.play(AssetSource('sound/skibidi.mp3'));
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -404,6 +413,7 @@ class Game {
         multiConfettiController.play();
         return WillPopScope(
           onWillPop: () async {
+            _victoryAudioPlayer.stop();
             return false;
           },
           child: Stack(children: [
@@ -519,6 +529,7 @@ class Game {
                             children: [
                               GestureDetector(
                                 onTap: () {
+                                  _victoryAudioPlayer.stop();
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
@@ -556,6 +567,7 @@ class Game {
                               ),
                               GestureDetector(
                                 onTap: () {
+                                  _victoryAudioPlayer.stop();
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(

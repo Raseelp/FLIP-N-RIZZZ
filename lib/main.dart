@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flipnrizz/loadingPage.dart';
 import 'package:flipnrizz/util/msgProvider.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,26 @@ void main() {
   runApp(const FlipNRizz());
 }
 
-class FlipNRizz extends StatelessWidget {
+class FlipNRizz extends StatefulWidget {
   const FlipNRizz({super.key});
+
+  @override
+  State<FlipNRizz> createState() => _FlipNRizzState();
+}
+
+class _FlipNRizzState extends State<FlipNRizz> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  void backgroundMusicPlay() {
+    _audioPlayer
+        .setReleaseMode(ReleaseMode.loop); // This will make the audio loop
+    _audioPlayer.play(AssetSource('sound/bg.mp3'));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    backgroundMusicPlay();
+  }
 
   @override
   Widget build(BuildContext context) {
