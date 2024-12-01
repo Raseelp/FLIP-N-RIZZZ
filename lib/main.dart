@@ -18,8 +18,8 @@ class FlipNRizz extends StatefulWidget {
 class _FlipNRizzState extends State<FlipNRizz> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   void backgroundMusicPlay() {
-    _audioPlayer
-        .setReleaseMode(ReleaseMode.loop); // This will make the audio loop
+    _audioPlayer.setReleaseMode(ReleaseMode.loop);
+    _audioPlayer.setVolume(0.6); // This will make the audio loop
     _audioPlayer.play(AssetSource('sound/bg.mp3'));
   }
 

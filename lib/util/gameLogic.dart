@@ -14,6 +14,7 @@ class Game {
   final int _secondsElapsed = 0;
   List<String>? gameImg;
   final AudioPlayer _victoryAudioPlayer = AudioPlayer();
+
   final List<List<String>> themes = [
     [
       'assets/images/1.png',
@@ -106,7 +107,9 @@ class Game {
         ConfettiController(duration: const Duration(seconds: 5));
     stopTimer();
     _victoryAudioPlayer.setReleaseMode(ReleaseMode.loop);
+    _victoryAudioPlayer.setVolume(0.5);
     _victoryAudioPlayer.play(AssetSource('sound/skibidi.mp3'));
+
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -405,6 +408,7 @@ class Game {
     final ConfettiController multiConfettiController =
         ConfettiController(duration: const Duration(seconds: 5));
     _victoryAudioPlayer.setReleaseMode(ReleaseMode.loop);
+    _victoryAudioPlayer.setVolume(0.5);
     _victoryAudioPlayer.play(AssetSource('sound/skibidi.mp3'));
     showDialog(
       barrierDismissible: false,
